@@ -1,0 +1,55 @@
+services:
+  prometheus:
+    image: prom/prometheus
+    user: root
+    ports:
+      - "9090:9090"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert-rules:/etc/prometheus/rules
+      # mount NFS Cluster
+      - /mnt/nfs-cluster/prometheus_data:/prometheus/data
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=15d
+      - --storage.tsdb.path=data/
+    networks:
+      - monitoring
+
+  alert-manager:
+    image: prom/alertmanager
+    user: root
+    ports:
+      - "9093:9093"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./alertmanager:/etc/alertmanager
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana
+    user: root
+    ports:
+      - "3000:3000"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+    env_file:
+      - .grafana.secret
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
+    #driver: overlay
