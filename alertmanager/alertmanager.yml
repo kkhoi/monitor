@@ -69,34 +69,34 @@ receivers:
         from: "example@gmail.com"
         smarthost: "smtp.gmail.com:587"
         auth_identity: "example@gmail.com"
-        auth_secret: "<your_secret>"
+        auth_secret: "test"
         auth_username: "example@gmail.com"
         send_resolved: true # gửi cảnh báo khi chúng được giải quyết
-  - name: "telegram-test"
-    telegram_configs:
-      - api_url: "https://api.telegram.org"
-        chat_id: <your_chat_id>
-        bot_token: "<your_bot_token>"
-        send_resolved: true # gửi cảnh báo khi chúng được giải quyết
-        message: '{{ template "telegram.default.message" . }}'
-  - name: "telegram-warning"
-    telegram_configs:
-      - api_url: "https://api.telegram.org"
-        chat_id: <your_chat_id>
-        bot_token: "<your_bot_token>"
-        send_resolved: true # gửi cảnh báo khi chúng được giải quyết
-        message: '{{ template "telegram.default.message" . }}'
-  - name: "telegram-alert"
-    telegram_configs:
-      - api_url: "https://api.telegram.org"
-        chat_id: <your_chat_id>
-        bot_token: "<your_bot_token>"
-        send_resolved: true # gửi cảnh báo khi chúng được giải quyết
-        message: '{{ template "telegram.default.message" . }}'
-  - name: "webhook"
-    webhook_configs:
-      - url: "http://api.my-alert.com/alert/7204342151"
-        send_resolved: true # gửi cảnh báo khi chúng được giải quyết
+  # - name: "telegram-test"
+  #   telegram_configs:
+  #     - api_url: "https://api.telegram.org"
+  #       chat_id: <your_chat_id>
+  #       bot_token: "<your_bot_token>"
+  #       send_resolved: true # gửi cảnh báo khi chúng được giải quyết
+  #       message: '{{ template "telegram.default.message" . }}'
+  # - name: "telegram-warning"
+  #   telegram_configs:
+  #     - api_url: "https://api.telegram.org"
+  #       chat_id: <your_chat_id>
+  #       bot_token: "<your_bot_token>"
+  #       send_resolved: true # gửi cảnh báo khi chúng được giải quyết
+  #       message: '{{ template "telegram.default.message" . }}'
+  # - name: "telegram-alert"
+  #   telegram_configs:
+  #     - api_url: "https://api.telegram.org"
+  #       chat_id: <your_chat_id>
+  #       bot_token: "<your_bot_token>"
+  #       send_resolved: true # gửi cảnh báo khi chúng được giải quyết
+  #       message: '{{ template "telegram.default.message" . }}'
+  # - name: "webhook"
+  #   webhook_configs:
+  #     - url: "http://api.my-alert.com/alert/7204342151"
+  #       send_resolved: true # gửi cảnh báo khi chúng được giải quyết
 
 # inhibit_rule kiểm tra hai loại cảnh báo: cảnh báo mục tiêu (target) và cảnh báo nguồn (source).
 # Cả hai cảnh báo này phải có các nhãn (labels) giống nhau dựa trên danh sách các nhãn được xác định.
