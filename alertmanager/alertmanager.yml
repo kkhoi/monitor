@@ -56,7 +56,7 @@ time_intervals:
         times:
           - start_time: "06:00"
             end_time: "23:00"
-      - weekdays: ["saturday:sunday"]
+      - weekdays: ["saturday", "sunday"]
         location: 'Asia/Ho_Chi_Minh'
         times:
           - start_time: "06:00"
