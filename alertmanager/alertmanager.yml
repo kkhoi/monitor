@@ -51,16 +51,16 @@ templates:
 time_intervals:
   - name: workhours
     time_intervals:
-      - weekdays: ["monday:sunday"]
+      - weekdays: ["monday:friday"]
         location: 'Asia/Ho_Chi_Minh'
         times:
           - start_time: "06:00"
             end_time: "23:00"
-      # - weekdays: ["saturday"]
-      #   location: 'Asia/Ho_Chi_Minh'
-      #   times:
-      #     - start_time: "06:00"
-      #       end_time: "23:00"
+      - weekdays: ["saturday:sunday"]
+        location: 'Asia/Ho_Chi_Minh'
+        times:
+          - start_time: "06:00"
+            end_time: "23:00"
 
 receivers:
   - name: "email"
