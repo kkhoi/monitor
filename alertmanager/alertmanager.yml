@@ -16,7 +16,7 @@ route:
   repeat_interval: 1d # default = 4h
 
   # Người nhận mặc định cho các cảnh báo nếu không được xác định trong cấu hình cụ thể.
-  receiver: "telegram-test"
+  receiver: "email"
 
   # Định tuyến các cảnh báo theo điều kiện cụ thể
   routes:
